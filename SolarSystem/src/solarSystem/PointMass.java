@@ -1,4 +1,4 @@
-package orbitMechanics;
+package solarSystem;
 
 import java.util.*;
 import java.lang.Math;
@@ -60,9 +60,9 @@ public class PointMass {
 		yVel = v*Math.sin(phi);
 		mass = 0.5 + bigMass*Math.random();
 		
-		if (mass>0.9*bigMass){
+		if (mass>0.8*bigMass){
 			// make a few planets among asteroids
-			mass = mass*10;
+			mass = mass*(1.0 + 10.0*Math.random());
 			xVel = 2*xVel;
 			yVel = 2*yVel;
 		}

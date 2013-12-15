@@ -1,4 +1,4 @@
-package orbitMechanics;
+package solarSystem;
 
 /**
  * This class manages the thread that is running the physics in the background.

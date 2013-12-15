@@ -1,4 +1,4 @@
-package orbitMechanics;
+package solarSystem;
 
 import javax.swing.JFrame;
 
