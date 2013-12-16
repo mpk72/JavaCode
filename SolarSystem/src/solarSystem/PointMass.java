@@ -3,6 +3,13 @@ package solarSystem;
 import java.util.*;
 import java.lang.Math;
 
+/**
+ * A PointMass object is used to represent each of the N bodies in the 
+ * simulation. Most of the parameters for controlling the behavior of the 
+ * physics are found throughout this class definition.
+ * @author Matt
+ *
+ */
 public class PointMass {
 
 	private double xPos; // (m) position along x axis
@@ -42,7 +49,7 @@ public class PointMass {
 	private static int nBodies = 0;
 
 	/**
-	 * Constructor: creates a new PointMass object with random stats
+	 * Constructor: creates a new PointMass object (random initialization)
 	 */
 	PointMass() {
 		
@@ -52,19 +59,19 @@ public class PointMass {
 		double v = 0.5*Math.random();
 		double phi = Math.PI - 2*Math.PI*Math.random();
 		
-		double bigMass = 30;
+		double bigMass = 40;
 		
 		xPos = r*Math.cos(th);
 		yPos = r*Math.sin(th);
 		xVel = v*Math.cos(phi);
 		yVel = v*Math.sin(phi);
-		mass = 0.5 + bigMass*Math.random();
+		mass = bigMass*(0.1+0.9*Math.random());
 		
-		if (mass>0.8*bigMass){
+		if (nBodies<3){
 			// make a few planets among asteroids
-			mass = mass*(1.0 + 10.0*Math.random());
-			xVel = 2*xVel;
-			yVel = 2*yVel;
+			mass = 100*mass*(0.2 + 0.8*Math.random());
+			xVel = 0.2*xVel;
+			yVel = 0.2*yVel;
 		}
 		
 		radius = calculateRadius();
@@ -120,7 +127,7 @@ public class PointMass {
 
 	/**
 	 * Get the force acting on the current PointMass from another point mass. If
-	 * the masses are coincident, returns null instead of div by 0 error.
+	 * the masses are coincident, returns an array of zeros
 	 */
 	private Double[] getForce(PointMass p) {
 
@@ -136,8 +143,10 @@ public class PointMass {
 		}
 
 		// Check that there are no divide by zero things...
-		if (r2 == 0.0)
-			return null;
+		if (r2 == 0.0) {
+			Double[] F = new Double[] {0.0, 0.0};
+			return F;
+		}
 
 		// Get the magnitude of the force (inverse-square law)
 		double F = G * this.mass * p.mass / r2;

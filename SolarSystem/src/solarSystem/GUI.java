@@ -20,13 +20,19 @@ public class GUI extends JFrame implements Runnable{
 		super(t);
 		disp = new Animation();
 		
+		/* For now, there is only a single JPanel in the gui. 
+		* More will be added at a future time to give the user control over
+		* restarting the application, and changing parameters 
+		*/
 		Container cp = getContentPane();
-		//cp.add(new JButton("click me"), BorderLayout.EAST);
 		cp.add(disp, BorderLayout.CENTER);
-		//cp.add(new JCheckBox("I got up today"), BorderLayout.SOUTH);
 		pack();
 	}
 	
+	/**
+	 * This method runs the gui animation. It basically just refreshed the
+	 * gui at FRAMERATE (or something close to it).
+	 */
 	public void run(){
 
 		long h = (long)(1000.0/FRAMERATE);

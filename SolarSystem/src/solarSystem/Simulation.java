@@ -2,6 +2,17 @@ package solarSystem;
 
 import javax.swing.JFrame;
 
+/**
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~ *
+ * ENTRY POINT FOR APPLICATION *
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~ *
+ * 
+ * This class creates a thread for the background physics and another thread
+ * to run the GUI. It then runs both threads.
+ * 
+ * @author Matt
+ *
+ */
 public class Simulation {
 
 	/**
@@ -12,7 +23,8 @@ public class Simulation {
 		/*
 		 * THREAD ONE  --  PHYSICS ENGINE
 		 */
-		Physics p = new Physics(60);
+		int nParticles = 60;  // Number of point masses in simulation
+		Physics p = new Physics(nParticles);
 		p.start();
 		
 		/*

@@ -14,17 +14,25 @@ public class Animation extends JPanel{
 
 	public final double lengthScale = 11;  // (pixels/meter) scales graphics
 
+	// Default dimensions of the gui 
 	public final int WIDTH = 800;
 	public final int HEIGHT = 800;
 
+	/** Constructor - creates a new animation object
+	 * 
+	 */
 	public Animation(){
 		super();
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setAlignmentX(Component.LEFT_ALIGNMENT);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
-
 	}
 
+	/**
+	 * This function is called every time the gui refreshes. It just puts a 
+	 * dot (size scaled by mass) at the location of every point mass.
+	 * @param g
+	 */
 	private void plotPoints(Graphics g) {
 
 		Graphics2D g2d = (Graphics2D) g;
@@ -36,7 +44,7 @@ public class Animation extends JPanel{
 		int xOrigin = size.width/2;
 		int yOrigin = size.height/2;
 	
-		Set<PointMass> s = Collections.synchronizedSet(PointMass.allBodies);
+		Set<PointMass> s = PointMass.allBodies;
 		synchronized(s){
 			for (PointMass p:s) {
 				double x = p.getXPos();
@@ -49,6 +57,9 @@ public class Animation extends JPanel{
 		}
 	}
 
+	/**
+	 * Updates the graphics
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 

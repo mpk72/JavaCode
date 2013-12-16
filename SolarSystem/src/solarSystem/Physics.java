@@ -2,7 +2,7 @@ package solarSystem;
 
 /**
  * This class manages the thread that is running the physics in the background.
- * It initializes the simulation and 
+ * It also initializes the system model and controls the integration time step.
  * @author Matt
  *
  */
